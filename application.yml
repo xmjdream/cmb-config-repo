@@ -1,0 +1,30 @@
+security:
+  basic:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka-service.credentials.uri:http://cmb-eureka-server.paas.cmbchina.cn}/eureka/
+  healthcheck:
+      enabled: true
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    leaseRenewalIntervalInSeconds: 5
+
+---
+spring:
+  profiles: cloud
+security:
+  basic:
+    enabled: false
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    nonSecurePort: 80
+    secure-port: 443
