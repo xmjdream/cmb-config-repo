@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    services:
+      registrationMethod: route
+
+  profiles: dev
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
